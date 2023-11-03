@@ -1,0 +1,22 @@
+version: '3.8'
+
+volumes:
+  volume_devopspro:
+
+networks:
+  devopspro_net:
+    driver: bridge
+
+services:
+  conversao-distancia:
+    container_name: conversao-distancia
+    image: brancomoreira/conversao-distancia:v1
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    ports: 
+     - 5000:5000
+    networks:
+      - devopspro_net
+    volumes:
+      - volume_devopspro:/app/templates
